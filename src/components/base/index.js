@@ -9,6 +9,7 @@ import styles, { HEIGHT } from './styles';
 
 function BaseToast({
   leadingIcon,
+  leadingComponent,
   trailingIcon,
   text1,
   text2,
@@ -44,6 +45,14 @@ function BaseToast({
             source={leadingIcon}
           />
         </TouchableOpacity>
+      ) || leadingComponent && (
+          <TouchableOpacity
+              testID='leadingIcon'
+              style={[styles.leadingIconContainer, leadingIconContainerStyle]}
+              onPress={onLeadingIconPress}
+              activeOpacity={onLeadingIconPress ? activeOpacity : 1}>
+            {leadingComponent}
+          </TouchableOpacity>
       )}
 
       <View
@@ -91,6 +100,7 @@ BaseToast.HEIGHT = HEIGHT;
 
 BaseToast.propTypes = {
   leadingIcon: Icon.propTypes.source,
+  leadingComponent: PropTypes.any,
   trailingIcon: Icon.propTypes.source,
   text1: PropTypes.string,
   text2: PropTypes.string,
@@ -112,6 +122,7 @@ BaseToast.propTypes = {
 
 BaseToast.defaultProps = {
   leadingIcon: undefined,
+  leadingComponent: undefined,
   trailingIcon: icons.close,
   text1: undefined,
   text2: undefined,

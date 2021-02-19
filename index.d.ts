@@ -10,6 +10,7 @@ declare module 'react-native-toast-message' {
 
   export interface BaseToastProps {
     leadingIcon?: ImageSourcePropType,
+    leadingComponent?: any,
     trailingIcon?: ImageSourcePropType,
     text1?: string,
     text2?: string,
